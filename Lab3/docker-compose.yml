@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  cassandra:
+    image: cassandra
+    container_name: ${CONTAINER_NAME}
+    networks:
+      - cassandra
+    volumes:
+      - ${DB_PATH}:/var/lib/cassandra
+      - ./scripts/:/scripts/
+
+networks:
+  cassandra:
+    name: PostRelationalDatabases__Labs.Cassandra
