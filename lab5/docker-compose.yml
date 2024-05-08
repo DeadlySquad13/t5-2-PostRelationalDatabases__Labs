@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: ${CONTAINER_NAME}
+    environment:
+      - NEO4J_AUTH=${DB_USR}/${DB_PWD}
+    # Using network requires some settings to be changed in neo4j configs.
+    # See page 19-20 of lab manual. Didn't have enough time for that so just
+    # forwarded ports.
+    # networks:
+    #   - neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - ${DB_PATH}:/data
+      - ${LOGS_PATH}:/logs
+      - ./scripts/:/scripts/
+
+# networks:
+#   neo4j:
+#     name: PostRelationalDatabases__Labs.Neo4j
