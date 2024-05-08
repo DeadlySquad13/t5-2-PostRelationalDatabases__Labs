@@ -4,5 +4,8 @@
 # Database files
 database
 
+# Log files
+lab5/logs
+
 # Env
 .env
