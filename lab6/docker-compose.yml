@@ -1,0 +1,22 @@
+version: '3'
+
+# See for variables description: https://hub.docker.com/_/postgres/
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: ${CONTAINER_NAME}
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USR}
+      - POSTGRES_PASSWORD=${DB_PWD}
+    networks:
+      - postgres
+    volumes:
+      - ${DB_PATH}:/var/lib/postgres/data
+      - ${LOGS_PATH}:/logs
+      - ${XMLDOCS_PATH}:/xmldocs
+      - ./scripts/:/scripts/
+
+networks:
+  postgres:
+    name: PostRelationalDatabases__Labs.Postgres
