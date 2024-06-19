@@ -1,3 +1,21 @@
+// Создать новые узлы и связи между ними.
+MERGE (u:user{
+    username: "Yura"
+}) -[ownership:owns]-> (r:repository{
+    name: 'RepoAnalyzer',
+    issues: 10,
+    prs: 12,
+    forks: 13,
+    stars: 333
+})
+
+// Вывести все узлы - все репозитории
+MATCH (r:repository) RETURN r
+
+// Удаление метки с узлов с атрибутом username.
+MATCH (node {attribute: 'username' }) REMOVE node: Label
+RETURN node
+
 // Удаление узлов и связей всех найденных сущностей
 MATCH(u: user{ name: 'Yura' }) DETACH DELETE u;
 // Удаление всех узлов и связей
